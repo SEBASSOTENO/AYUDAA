@@ -49,10 +49,16 @@
 									</div>
 								</div>
 							</div>
+							<center>
 							<div class="form-group">
-							<p id="error6"></p>
-                            <input type="text" name="id_artesano" id="id_artesano" class="form-control input-sm" onblur="valiema()" pattern="[0-9]+" placeholder="Id artesano">
+							<select name="id_a" id="id_a">
+						            <option value="0">----- Selecciona artesano -----</option>
+						    	@foreach($artesano as $a)
+						                <option value="{{$a->id}}">{{$a->nombre_a}}{{$a->ap_a}} {{$a->am_a}}</option>
+						    	@endforeach
+						        </select>
 							</div>
+							</center>
 							<div class="row">
  
 								<div class="col-xs-12 col-sm-12 col-md-12">

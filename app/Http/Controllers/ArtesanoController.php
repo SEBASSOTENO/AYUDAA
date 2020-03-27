@@ -18,8 +18,8 @@ class ArtesanoController extends ApiController
      */
     public function index()
     {
-        $artesano=Artesano::orderBy('id','DESC')->paginate();
-        return view('Artesano.index',compact('artesano')); 
+        $artesanos=Artesano::orderBy('id','DESC')->paginate();
+        return view('Artesano.index',compact('artesanos')); 
     }
  
     /**

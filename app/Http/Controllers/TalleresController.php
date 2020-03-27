@@ -18,8 +18,14 @@ class TalleresController extends ApiController
      */
     public function index()
     {
-        $taller=Taller::orderBy('id','DESC')->paginate();
-        return view('Taller.index',compact('taller'));
+        $talleres=Taller::orderBy('id','DESC')->paginate();
+        $tallers = Taller::join('artesanos','artesanos.id','tallers.id_artesano')
+        ->select(
+            'tallers.id as id',
+            'artesanos.nombre_a as nombrea'
+        )
+        ->get();
+        return view('Taller.index',compact('talleres'));
     }
 
     /**
@@ -28,8 +34,11 @@ class TalleresController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('Taller.create');
+    {   
+        $artesano = Artesano::all();
+
+        return view('Taller.create')
+        ->with(['artesano' => $artesano]);
     }
 
     /**
@@ -40,8 +49,16 @@ class TalleresController extends ApiController
      */
     public function store(Request $request)
     {
-        $this->validate($request,[ 'nombre_t'=>'required', 'direccion'=>'required', 'telefono'=>'required', 'id_artesano'=>'required']);
-        Taller::create($request->all());
+        // $this->validate($request,[ 'nombre_t'=>'required', 'direccion'=>'required', 'telefono'=>'required', ]);
+        
+        $tallers=new Taller;           
+        $tallers->id_artesano=$request->id_a;
+        $tallers->nombre_t=$request->nombre_t;
+        $tallers->telefono=$request->telefono;
+        $tallers->direccion=$request->direccion;
+
+        $tallers->save();
+
         return redirect()->route('taller.index')->with('success','Registro creado satisfactoriamente');
     }
 
@@ -67,7 +84,23 @@ class TalleresController extends ApiController
     public function edit($id)
     {
         $taller=Taller::findOrfail($id);
-        return view('taller.edit',compact('taller'));
+
+        $talleredit = Taller::join('artesanos','artesanos.id','tallers.id_artesano')
+        ->where('tallers.id',$id)
+        ->select(
+            'tallers.*',
+
+            'artesanos.nombre_a as nombrea',
+            'artesanos.ap_a as apa',
+            'artesanos.am_a as ama',
+        )
+        ->first();
+
+        $artesano = Artesano::all();
+
+        return view('Taller.edit', compact('artesano','talleredit'));
+
+        // return view('taller.edit',compact('taller'));
     }
 
     /**
@@ -79,9 +112,14 @@ class TalleresController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[ 'nombre_t'=>'required', 'direccion'=>'required', 'telefono'=>'required', 'id_artesano'=>'required']);
-        Taller::findOrfail($id)->update($request->all());
-        return redirect()->route('taller.index')->with('success','Registro actualizado satisfactoriamente');
+        $talleredit=Taller::findOrFail($id);        
+        $talleredit->id_artesano=$request->id_a;
+        $talleredit->nombre_t=$request->nombre_t;
+        $talleredit->telefono=$request->telefono;
+        $talleredit->direccion=$request->direccion;
+        $talleredit->save();
+
+        return redirect()->route('taller.index')->with('success','Registro creado satisfactoriamente');
     }
 
     /**

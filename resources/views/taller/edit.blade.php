@@ -25,20 +25,20 @@
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-					<form method="POST" action="{{ route('taller.update',$taller->id) }}"  role="form">
+					<form method="POST" action="{{ route('taller.update',$talleredit->id) }}"  role="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<p id="error1"></p>
-										<input type="text" name="nombre_t" id="nombre_t" onblur="valiun()" pattern="[a-záéíóúñ A-ZÁÉÍÓÚÑ ]+" class="form-control input-sm" placeholder="Nombre" value="{{$taller->nombre_t}}">
+										<input type="text" name="nombre_t" id="nombre_t" onblur="valiun()" pattern="[a-záéíóúñ A-ZÁÉÍÓÚÑ ]+" class="form-control input-sm" placeholder="Nombre" value="{{$talleredit->nombre_t}}">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<p id="error4"></p>
-										<input type="text" name="telefono" onblur="valit()" id="telefono" class="form-control input-sm" placeholder="Telefono" value="{{$taller->telefono}}">
+										<input type="text" name="telefono" onblur="valit()" id="telefono" class="form-control input-sm" placeholder="Telefono" value="{{$talleredit->telefono}}">
 									</div>
 								</div>
 							</div>
@@ -46,13 +46,21 @@
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 									<p id="error5"></p>
-										<input type="text" name="direccion" id="direccion" onblur="validu()" pattern="[a-záéíóúñ#0-9 A-ZÁÉÍÓÚÑ ,]+" class="form-control input-sm" placeholder="Direccion" value="{{$taller->direccion}}">
+										<input type="text" name="direccion" id="direccion" onblur="validu()" pattern="[a-záéíóúñ#0-9 A-ZÁÉÍÓÚÑ ,]+" class="form-control input-sm" placeholder="Direccion" value="{{$talleredit->direccion}}">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-							<p id="error6"></p>
-                            <input type="text" name="id_artesano" id="id_artesano" class="form-control input-sm" onblur="valiema()" pattern="[0-9]+" placeholder="id_artesano" value="{{$taller->id_artesano}}">
+							<center>
+							<div class="form-group">
+							<select name="id_a" id="id_a">
+						            <option value="{{$talleredit->id_artesano}}">{{$talleredit->nombrea}} {{$talleredit->apa}} {{$talleredit->ama}}</option>
+						    	@foreach($artesano as $a)
+						                <option value="{{$a->id}}">{{$a->nombre_a}} {{$a->ap_a}} {{$a->am_a}}</option>
+						    	@endforeach
+						        </select>
+							</div>
+							</center>
 							</div>
 							<div class="row">
  

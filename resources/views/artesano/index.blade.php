@@ -14,7 +14,8 @@
           </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
-             <thead class="thead-dark">
+             <thead>
+               <th>Id</th>
                <th>Nombre</th>
                <th>Apellido paterno</th>
                <th>Apellido Materno</th>
@@ -25,9 +26,10 @@
                <th>Eliminar</th>
              </thead>
              <tbody>
-              @if($artesano->count())  
-              @foreach($artesano as $artesano)  
+              @if($artesanos->count())  
+              @foreach($artesanos as $artesano)  
               <tr>
+                <td>{{$artesano->id}}</td>
                 <td>{{$artesano->nombre_a}}</td>
                 <td>{{$artesano->ap_a}}</td>
                 <td>{{$artesano->am_a}}</td>
@@ -36,11 +38,12 @@
                 <td>{{$artesano->email}}</td>
                 <td><a class="btn btn-primary btn-xs" href="{{action('ArtesanoController@edit', $artesano->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('ArtesanoController@destroy', $artesano->id)}}" method="post">
+                  <form action="{{route('artesano.destroy', $artesano->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
  
                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                  </form>
                  </td>
                </tr>
                @endforeach 

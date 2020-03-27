@@ -15,6 +15,7 @@
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
+               <th>Id</th>
                <th>Nombre del taller</th>
                <th>Direccion</th>
                <th>Telefono</th>
@@ -23,9 +24,10 @@
                <th>Eliminar</th>
              </thead>
              <tbody>
-              @if($taller->count())  
-              @foreach($taller as $taller)  
+              @if($talleres->count())  
+              @foreach($talleres as $taller)  
               <tr>
+                <td>{{$taller->id}}</td>
                 <td>{{$taller->nombre_t}}</td>
                 <td>{{$taller->direccion}}</td>
                 <td>{{$taller->telefono}}</td>
@@ -37,6 +39,7 @@
                    <input name="_method" type="hidden" value="DELETE">
  
                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                  </form>
                  </td>
                </tr>
                @endforeach 

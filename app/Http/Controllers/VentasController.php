@@ -176,7 +176,7 @@ class VentasController extends ApiController
      */
     public function destroy(Request $request, $id)
     {
-        $ventas= Venta::findOrFail($id);
+        // $ventas= Venta::findOrFail($id);
         $ventas->delete();
         return redirect()->route('venta.index')->with('success','Registro eliminado satisfactoriamente');
     }

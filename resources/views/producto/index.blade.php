@@ -18,7 +18,7 @@
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
-               <th>id</th>
+               <th>Id</th>
                <th>Nombre</th>
                <th>Costo</th>
                <th>Descripcion</th>
