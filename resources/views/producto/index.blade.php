@@ -18,6 +18,7 @@
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
+               <th>id</th>
                <th>Nombre</th>
                <th>Costo</th>
                <th>Descripcion</th>
@@ -26,20 +27,22 @@
                <th>Eliminar</th>
              </thead>
              <tbody>
-              @if($producto->count())  
-              @foreach($producto as $producto)  
+              @if($productos->count())  
+              @foreach($productos as $producto)  
               <tr>
+              <td>{{$producto->id}}</td>
                 <td>{{$producto->nombre_p}}</td>
                 <td>{{$producto->costo}}</td>
                 <td>{{$producto->descripcion}}</td>
                 <td><a href="{{$producto->imagen}}"> Ver imagen </a></td>
                 <td><a class="btn btn-primary btn-xs" href="{{action('ProductosController@edit', $producto->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('ProductosController@destroy', $producto->id)}}" method="post">
+                  <form action="{{route('producto.destroy', $producto->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
  
                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
                  </td>
                </tr>
                @endforeach 

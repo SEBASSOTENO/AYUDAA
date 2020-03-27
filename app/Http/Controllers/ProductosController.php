@@ -14,8 +14,8 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $producto=Producto::orderBy('id','DESC')->paginate();
-        return view('producto.index',compact('producto'));
+        $productos=Producto::orderBy('id','DESC')->paginate();
+        return view('producto.index',compact('productos'));
     }
 
     /**
