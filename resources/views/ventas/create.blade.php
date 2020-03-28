@@ -34,7 +34,7 @@
 						        <select name="id_u" id="id_u">
 						            <option value="0">----- Selecciona usuario -----</option>
 						    	@foreach($usuario as $u)
-						                <option value="{{$u->id}}">{{$u->nombre_u}}{{$u->ap_u}} {{$u->am_u}}</option>
+						                <option value="{{$u->id}}">{{$u->nombre_u}} {{$u->ap_u}} {{$u->am_u}}</option>
 						    	@endforeach
 						        </select>
 						      </td>
@@ -45,7 +45,7 @@
 						        <select name="id_a" id="id_a">
 						            <option value="0">----- Selecciona artesano -----</option>
 						    	@foreach($artesano as $a)
-						                <option value="{{$a->id}}">{{$a->nombre_a}} {{$a->ap_a}}{{$a->am_a}}</option>
+						                <option value="{{$a->id}}">{{$a->nombre_a}} {{$a->ap_a}} {{$a->am_a}}</option>
 						    	@endforeach
 						        </select>
 						      </td>
