@@ -10,7 +10,8 @@
           <div class="pull-right">
             <div class="btn-group">
               <a href="{{ route('venta.create') }}" class="btn btn-primary" >Añadir Venta</a>
-              <a href="/pdf" class="btn btn-success" >Detalles</a>
+              <a href="/pdf" class="btn btn-success" >PDF/General</a>
+              <a href="/filtrado" class="btn btn-danger" >PDF/Filtro</a>
             </div>
           </div>
           <div class="table-container">

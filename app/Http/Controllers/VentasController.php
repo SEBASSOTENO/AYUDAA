@@ -89,6 +89,45 @@ class VentasController extends ApiController
 
     }
 
+    public function filtrado()
+    {
+        $artesano = Artesano::all();
+        $producto = Producto::all();
+        $usuario = Usuario::all();
+        return view('filtrado', compact('artesano','producto','usuario'));
+        // return $venta;
+    }
+ 
+    public function pdfventa(Request $request)
+    {
+        $ventas = Venta::join('usuarios','usuarios.id','ventas.id_usuario')
+        ->join('artesanos','artesanos.id','ventas.id_artesano')
+        ->join('productos','productos.id','ventas.id_producto')
+        ->where('ventas.id_artesano',$request->id_a)
+        ->where('ventas.id_usuario',$request->id_u)
+        ->where('ventas.id_producto',$request->id_p)
+        ->select(
+            'ventas.id as id',
+            'usuarios.nombre_u as nombreu',
+            'usuarios.ap_u as apu',
+            'usuarios.am_u as amu',
+
+            'artesanos.nombre_a as nombrea',
+            'artesanos.ap_a as apa',
+            'artesanos.am_a as ama',
+
+
+            'productos.nombre_p as nombrep',
+            'productos.costo as cost',
+        )
+        ->get();
+
+        // return $ventas;
+        // return view('pdfventa');
+        $pdf = PDF::loadview('pdfventa', compact('ventas'));
+        return $pdf->stream('ventasfiltradas.pdf');  
+    }
+
     /**
      * Display the specified resource.
      *

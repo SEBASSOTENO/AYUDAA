@@ -33,6 +33,7 @@ Route::get('/pdf', 'VentasController@exportPDF');
 
 Route::get('/combo', 'VentasController@store');
 
+Route::get('/filtrado', 'VentasController@filtrado');
 
-
+Route::get('/pdfventa', 'VentasController@pdfventa')->name('pdfventa');
 

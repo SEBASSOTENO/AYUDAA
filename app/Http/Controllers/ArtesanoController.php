@@ -89,7 +89,8 @@ class ArtesanoController extends ApiController
         return redirect()->route('artesano.index')->with('success','Registro actualizado satisfactoriamente');
  
     }
- 
+
+  
     /**
      * Remove the specified resource from storage.
      *
